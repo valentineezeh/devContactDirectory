@@ -122,4 +122,26 @@ describe('Developer Contact Directory Test', () => {
         });
     });
   });
+
+  describe('When endpoint get hit', () => {
+    it('should delete a developer contact', (done) => {
+      request.delete('/api/v1/developer/contact/1')
+        .end((err, res) => {
+          if (err) return done(err);
+          expect(res.status).to.equal(200);
+          expect(res.body.message).to.equal('Success! Contact with Id Number 1 has been deleted.');
+          done();
+        });
+    });
+
+    it('should throw an error if contact does not exist', (done) => {
+      request.delete('/api/v1/developer/contact/11')
+        .end((err, res) => {
+          if (err) return done(err);
+          expect(res.status).to.equal(404);
+          expect(res.body.message).to.equal('The contact of this developer is not found.');
+          done();
+        });
+    });
+  });
 });
