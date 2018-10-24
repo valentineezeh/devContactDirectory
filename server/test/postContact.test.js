@@ -96,4 +96,30 @@ describe('Developer Contact Directory Test', () => {
         });
     });
   });
+
+  describe('When passed valid data', () => {
+    it('should update developer contact', (done) => {
+      const { validDetails } = fakeUserData;
+      request.put('/api/v1/developer/contact/1')
+        .send(validDetails)
+        .end((err, res) => {
+          if (err) return done(err);
+          expect(res.status).to.equal(200);
+          expect(res.body).to.be.an('object');
+          done();
+        });
+    });
+
+    it('should throw an error if contact does not exist', (done) => {
+      const { validDetails } = fakeUserData;
+      request.put('/api/v1/developer/contact/11')
+        .send(validDetails)
+        .end((err, res) => {
+          if (err) return done(err);
+          expect(res.status).to.equal(404);
+          expect(res.body.message).to.equal('The contact of this developer is not found.');
+          done();
+        });
+    });
+  });
 });
