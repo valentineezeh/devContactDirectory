@@ -36,11 +36,9 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
     },
     category: {
-      type: DataTypes.TEXT,
+      type: DataTypes.ENUM,
+      values: ['backend', 'frontend', 'others'],
       allowNull: false,
-      validate: {
-        notEmpty: { msg: 'Empty strings not allowed' }
-      }
     },
     programmingLanguage: {
       type: DataTypes.STRING,
