@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   res.status(200).send({
-    message: 'Welcome to Developer Contact Directory',
+    message: 'Welcome to Developer Contact Directory..',
   });
 });
 
