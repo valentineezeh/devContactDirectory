@@ -11,9 +11,9 @@ class PostDevContactController {
   /**
  * @param {obj} req
  * @param {obj} res
- * @returns {json} createArticles
+ * @returns {json} create Contact
  */
-  static postContact(req, res, next) {
+  static postContact(req, res) {
     const email = req.body.email.trim().toLowerCase();
     directory.findOne({
       where: {

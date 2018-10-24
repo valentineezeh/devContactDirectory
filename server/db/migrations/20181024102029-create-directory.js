@@ -24,7 +24,8 @@ module.exports = {
       type: Sequelize.JSONB
     },
     category: {
-      type: Sequelize.STRING
+      type: Sequelize.ENUM,
+      values: ['backend', 'frontend', 'others']
     },
     programmingLanguage: {
       type: Sequelize.STRING
