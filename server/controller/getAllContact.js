@@ -32,11 +32,6 @@ class GetAllDevContactsController {
             newContactList.push(contact);
           }
         });
-        if (newContactList.length === 0) {
-          return res.status(404).json({
-            message: 'Developers are yet to choose this category '
-          });
-        }
         return res.status(200).json(newContactList);
       }).catch(() => res.status(404).json({
         message: 'Category not found.',

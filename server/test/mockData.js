@@ -13,7 +13,7 @@ const fakeUserData = {
     gitHubRepoLink: 'https://www.github.com/wela',
     programmingLanguage: 'python'
   },
-  invalidEmail: {
+  invalidMobile: {
     firstname: 'John',
     lastname: 'Brown',
     mobile: '',
@@ -23,6 +23,20 @@ const fakeUserData = {
     city: 'MaryLand',
     address: 'No 7 omitoro avenue',
     category: 'backend',
+    linkedinUrl: 'https://www.linkedin.com/me/profile',
+    gitHubRepoLink: 'https://www.github.com/wela',
+    programmingLanguage: 'python'
+  },
+  invalidCategory: {
+    firstname: 'John',
+    lastname: 'Brown',
+    mobile: '08074037214',
+    email: 'making@gmail.com',
+    country: 'Nigeria',
+    state: 'lagos',
+    city: 'MaryLand',
+    address: 'No 7 omitoro avenue',
+    category: 'blank',
     linkedinUrl: 'https://www.linkedin.com/me/profile',
     gitHubRepoLink: 'https://www.github.com/wela',
     programmingLanguage: 'python'

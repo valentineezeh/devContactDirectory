@@ -20,6 +20,18 @@ describe('Developer Contact Directory Test', () => {
           done();
         });
     });
+    it('should throw an error when pass invalid category', (done) => {
+      const { invalidCategory } = fakeUserData;
+      request.post('/api/v1/developer/contact')
+        .set('Content-Type', 'application/json')
+        .send(invalidCategory)
+        .end((err, res) => {
+          if (err) return done(err);
+          expect(res.status).to.equal(400);
+          expect(res.body.message).to.equal('Category most either be frontend, backend or others');
+          done();
+        });
+    });
   });
 
   describe('When passed valid data', () => {
@@ -66,8 +78,8 @@ describe('Developer Contact Directory Test', () => {
         .set('Content-Type', 'application/json')
         .end((err, res) => {
           if (err) return done(err);
-          expect(res.status).to.equal(404);
-          expect(res.body.message).to.equal('Developers are yet to choose this category ');
+          expect(res.status).to.equal(200);
+          expect(res.body).to.be.an('array');
           done();
         });
     });
@@ -114,6 +126,28 @@ describe('Developer Contact Directory Test', () => {
       const { validDetails } = fakeUserData;
       request.put('/api/v1/developer/contact/11')
         .send(validDetails)
+        .end((err, res) => {
+          if (err) return done(err);
+          expect(res.status).to.equal(404);
+          expect(res.body.message).to.equal('The contact of this developer is not found.');
+          done();
+        });
+    });
+  });
+
+  describe('When endpoint get hit', () => {
+    it('should delete a developer contact', (done) => {
+      request.delete('/api/v1/developer/contact/1')
+        .end((err, res) => {
+          if (err) return done(err);
+          expect(res.status).to.equal(200);
+          expect(res.body.message).to.equal('Success! Contact with Id Number 1 has been deleted.');
+          done();
+        });
+    });
+
+    it('should throw an error if contact does not exist', (done) => {
+      request.delete('/api/v1/developer/contact/11')
         .end((err, res) => {
           if (err) return done(err);
           expect(res.status).to.equal(404);
