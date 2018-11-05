@@ -33,6 +33,7 @@ class PostDevContactController {
           });
         } else {
           directory.create({
+            userId: req.decoded.userId,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             mobile: req.body.mobile,

@@ -14,11 +14,16 @@ class UpdateDevContactController {
  * @returns {json} create Contact
  */
   static updateContact(req, res) {
-    directory.findOne({
+    directory.findAll({
       where: {
         id: req.params.contactId,
       }
     }).then((foundContact) => {
+      if (req.decoded.userId !== foundContact[0].userId) {
+        return res.status(400).send({
+          error: 'You do not have the privilege to Update this Directory',
+        });
+      }
       if (!foundContact) {
         return res.status(404).json({
           message: 'The contact of this developer is not found.'
