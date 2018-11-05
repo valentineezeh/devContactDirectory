@@ -18,12 +18,15 @@ API Endpoint: https://localhost:7000/api/v1
 
 ## API Endpoints
 
-| Endpoint                                         | Functionality                      |
-| ------------------------------------------------ | ------------------------------     |
-| GET /developer/contact                           | Fetch all available contacts       |
-| DELETE /developer/contacts/\<contactId>          | Delete a contact by contact Id     |
-| POST /developer/contact                          | Create a contact                   |
-| PUT /developer/contact/\<contactId>              | Update a contact by contact Id     |
+| Endpoint                                         | Functionality                                      |
+| ------------------------------------------------ | ---------------------------------------------      |
+| GET /developer/contact                           | Fetch all available contacts                       |
+| DELETE /developer/contacts/\<contactId>          | Delete a contact by auth user contact Id           |
+| POST /developer/contact                          | Create a contact by auth user                      |
+| PUT /developer/contact/\<contactId>              | Update a contact by auth user using contact Id     |
+| GET /developer/contact/?category=frontend        | Fetch contacts by category                         |
+| POST /developer/register                         | Register a user to get token                       |
+| POST /developer/login                            | Login a user to get token                          |
 
 
 # To Install

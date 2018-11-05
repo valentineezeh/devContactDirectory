@@ -1,22 +1,29 @@
 import express from 'express';
 import UserInputValidation from '../middleware/ValidateUserInput';
+import AuthValidation from '../middleware/ValidateAuthUser';
+import Auth from '../middleware/Authentication';
 import {
   PostDevContactController,
   GetAllDevContactsController,
   UpdateDevContactController,
-  DeleteADevContactContoller
+  DeleteADevContactContoller,
+  AuthController
 } from '../controller/index';
 
 const router = express.Router();
 
 // Valid Routes
-router.post('/developer/contact', UserInputValidation.InputValidation, PostDevContactController.postContact);
+router.post('/developer/register', AuthValidation.signUp, AuthController.signUp);
+
+router.post('/developer/login', AuthValidation.signIn, AuthController.signIn);
+
+router.post('/developer/contact', UserInputValidation.InputValidation, Auth.verify, PostDevContactController.postContact);
 
 router.get('/developer/contact', GetAllDevContactsController.getAllContact);
 
-router.put('/developer/contact/:contactId', UserInputValidation.InputValidation, UpdateDevContactController.updateContact);
+router.put('/developer/contact/:contactId', UserInputValidation.InputValidation, Auth.verify, UpdateDevContactController.updateContact);
 
-router.delete('/developer/contact/:contactId', DeleteADevContactContoller.deleteDevContact);
+router.delete('/developer/contact/:contactId', Auth.verify, DeleteADevContactContoller.deleteDevContact);
 
 // catch all invalid routes
 router.get('*', (req, res) => res.status(404).json({

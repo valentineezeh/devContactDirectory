@@ -13,11 +13,17 @@ class DeleteADevContactContoller {
  * @returns {json} all contacts directory
  */
   static deleteDevContact(req, res) {
-    directory.findOne({
+    directory.find({
       where: {
-        id: req.params.contactId
+        id: req.params.contactId,
       }
     }).then((devContact) => {
+      console.log('===>', devContact)
+      if (req.decoded.userId !== devContact.userId) {
+        return res.status(400).send({
+          error: 'You do not have the privilege to Delete this Directory',
+        });
+      }
       if (!devContact) {
         return res.status(404).json({
           message: 'The contact of this developer is not found.'

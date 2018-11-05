@@ -8,6 +8,10 @@ module.exports = {
       autoIncrement: true,
       type: Sequelize.INTEGER,
     },
+    userId: {
+      allowNull: true,
+      type: Sequelize.INTEGER,
+    },
     firstname: {
       type: Sequelize.STRING
     },
